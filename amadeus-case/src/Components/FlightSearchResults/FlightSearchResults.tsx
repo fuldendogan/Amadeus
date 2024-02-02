@@ -1,9 +1,9 @@
-import React, {useState} from 'react';
+import React from 'react';
 
 // Mock data örneği
 
 
-const Flight = ({ flight, onSelect, isSelected }) => {
+const Flight = ({ flight, onSelect, isSelected, isSelectDisabled }) => {
     return (
         <div className="flight-card">
             <div className="flight-date">{flight.date}</div>
@@ -14,7 +14,7 @@ const Flight = ({ flight, onSelect, isSelected }) => {
             <div className="flight-price">{flight.price} TL</div>
             <button
                 onClick={() => onSelect(flight)}
-                disabled={isSelected}
+                disabled={isSelected || isSelectDisabled} // isSelected veya isSelectDisabled true ise buton disabled olur
             >
                 {isSelected ? 'Seçildi' : 'Seç'}
             </button>
@@ -22,7 +22,7 @@ const Flight = ({ flight, onSelect, isSelected }) => {
     );
 };
 
-const FlightSearchResults = ({ loading, flights, onFlightSelect, selectedFlight }) => {
+const FlightSearchResults = ({ loading, flights, onFlightSelect, selectedFlight, isSelectDisabled }) => {
     if (loading) {
         return <div>Yükleniyor...</div>;
     }
@@ -34,13 +34,13 @@ const FlightSearchResults = ({ loading, flights, onFlightSelect, selectedFlight 
     return (
         <div className="flight-results-container">
             {flights.map((flight) => (
-                <div key={flight.id}>
-                    <Flight
-                        flight={flight}
-                        onSelect={() => onFlightSelect(flight)}
-                        isSelected={selectedFlight?.id === flight.id}
-                    />
-                </div>
+                <Flight
+                    key={flight.id}
+                    flight={flight}
+                    onSelect={() => onFlightSelect(flight)}
+                    isSelected={selectedFlight?.id === flight.id}
+                    isSelectDisabled={isSelectDisabled} // Burada kullanılıyor
+                />
             ))}
         </div>
     );

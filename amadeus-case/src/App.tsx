@@ -88,42 +88,8 @@ const App = () => {
         },];
 
 
-    // const handleSearch = async () => {
-    //     event.preventDefault(); // Formun varsayılan submit davranışını engelle
-    //     setLoading(true);
-    //     setSearchPerformed(true);
-    //
-    //
-    //
-    //     // Gidiş uçuşlarını filtrele
-    //     const filteredDepartureFlights = mockFlights.filter(flight => {
-    //         return flight.departure.toLowerCase().includes(fromInputValue.toLowerCase()) &&
-    //             flight.destination.toLowerCase().includes(toInputValue.toLowerCase()) &&
-    //             flight.date === departureDate;
-    //     });
-    //
-    //     let filteredReturnFlights = [];
-    //     if (isRoundTrip) {
-    //         // Dönüş uçuşlarını filtrele
-    //         filteredReturnFlights = mockFlights.filter(flight => {
-    //             return flight.departure.toLowerCase().includes(toInputValue.toLowerCase()) &&
-    //                 flight.destination.toLowerCase().includes(fromInputValue.toLowerCase()) &&
-    //                 flight.date === returnDate;
-    //         });
-    //     }
-    //
-    //     // Filtrelenen uçuşları state'e ata
-    //     setFlights(filteredDepartureFlights);
-    //     setReturnFlights(filteredReturnFlights);
-    //
-    //     setLoading(false);
-    // };
-
-
-
-
     const handleSearch = async () => {
-        event?.preventDefault(); // Formun varsayılan submit davranışını engelle
+        event?.preventDefault();
         setLoading(true);
 
         setSelectedDepartureFlight(null);
@@ -202,7 +168,7 @@ const App = () => {
                         onFlightSelect={setSelectedReturnFlight}
                         loading={loading}
                         selectedFlight={selectedReturnFlight}
-
+                        isSelectDisabled={!selectedDepartureFlight}
                     />
                 </>
             )}
