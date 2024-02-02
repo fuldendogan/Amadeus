@@ -1,0 +1,180 @@
+body {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: Lato, sans-serif;
+    /*background: black;*/
+}
+
+.flex {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 1rem;
+    padding: 1rem;
+}
+
+.search-bar {
+    background-color: #f0f0f0;
+    padding: 20px;
+    border-radius: 5px;
+    margin-left: 20px;
+    margin-right: 20px;
+    width: 90%;
+}
+
+.flight-results-container {
+    background-color: #f0f0f0;
+    padding: 20px;
+    border-radius: 5px;
+    margin-left: 20px;
+    margin-right: 20px;
+    width: 90%;
+}
+
+.search-bar form {
+    align-items: center;
+    gap: 10px;
+    display: grid;
+}
+
+.search-bar input[type="text"],
+.search-bar input[type="date"] {
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.search-bar .trip-type {
+    margin-bottom: 10px;
+}
+
+.search-bar label {
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.search-bar button {
+    padding: 10px 20px;
+    background-color: yellow;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+
+.input-group {
+    display: flex;
+    flex-direction: column; /* Label ve inputları dikey olarak sıralar */
+}
+/* Styling for radio buttons can be added as needed */
+
+.button-search{
+    margin-bottom: 10px;
+}
+
+.unVisible{
+    display: none;
+}
+
+.custom-control {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: center;
+}
+
+.search-bar{
+    position: relative;
+}
+
+.from{
+    position: relative; /* Öneri listesi bu grubun konumunu referans alacak */
+}
+
+.to{
+    position: relative; /* Öneri listesi bu grubun konumunu referans alacak */
+}
+
+.suggestions-container {
+    position: absolute;
+    top: 60%; /* 'Nereden' input alanının altında başlar */
+    left: 0;
+    right: 0;
+    max-height: 300px;
+    overflow-y: auto;
+    background: white;
+    border: 1px solid #ccc;
+    border-top: none;
+}
+
+.flight-results-container {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px; // Arama çubuğundan boşluk bırakın
+}
+
+.flight-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    margin-bottom: 10px; // Kartlar arası boşluk
+border: 1px solid #ccc;
+    border-radius: 4px; // Kenarları yuvarlak yap
+}
+
+.flight-time, .flight-airline, .flight-price {
+    margin-right: 10px; // İçerikler arası boşluk
+}
+
+.select-flight {
+    padding: 5px 15px;
+    background-color: #4CAF50; // Yeşil arka plan
+color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.flight-card {
+    display: grid;
+    grid-template-columns: 2fr 2fr 3fr 2fr 2fr 2fr 1fr; /* 5 sütunu farklı oranlarda ayarlayın */
+    gap: 10px;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+.flight-detail {
+    white-space: nowrap; /* Metnin taşmamasını sağlayın */
+    overflow: hidden; /* Sınırların dışına çıkan içeriği gizleyin */
+    text-overflow: ellipsis; /* Taşan metin için üç nokta ekleyin */
+}
+
+/* Özelleştirilmiş sütunlar */
+.flight-card > .departure-time {
+    grid-column: span 1; /* Kalkış ve varış saati */
+}
+
+.flight-card > .duration {
+    grid-column: span 1; /* Uçuş süresi */
+}
+
+.flight-card > .price {
+    grid-column: span 1; /* Fiyat */
+}
+
+.flight-card > .select-flight {
+    grid-column: span 1; /* Seç butonu */
+}
+
+
