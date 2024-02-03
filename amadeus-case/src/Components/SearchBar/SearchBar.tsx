@@ -1,4 +1,6 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
+
+
 
 const SearchBar = ({
                        isRoundTrip,
@@ -11,19 +13,20 @@ const SearchBar = ({
                        setFromInputValue,
                        toInputValue,
                        setToInputValue,
-                       // fromSuggestions,
-                       // toSuggestions,
                        handleSearch,
                        isSearchButtonDisabled
                    }) => {
 
-    const airports = [
-        {code: 'ADB', name: 'Izmir Adnan Menderes'},
-        {code: 'ADA', name: 'Adana Sakirpasa'},
-        {code: 'ESB', name: 'Ankara Esenboga'},
-        {code: 'AYT', name: 'Antalya'},
-        {code: 'GZT', name: 'Gaziantep Oguzeli'},
-        {code: 'IST', name: 'Istanbul Ataturk'},];
+    type Airport = {
+        code: string;
+        name: string;
+    }
+    const [airports, setAirports] = useState<Airport[]>([]);
+    useEffect(() => {
+        fetch('/api/airports')
+            .then(response => response.json())
+            .then(airports => setAirports(airports));
+    }, []);
 
 
     const gridTemplateColumns = isRoundTrip ? '2fr 2fr 1fr 1fr 1fr' : '2fr 2fr 1fr 1fr';

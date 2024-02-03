@@ -1,0 +1,66 @@
+[
+  {
+    "id": 1,
+    "departure": "Izmir Adnan Menderes Airport",
+    "destination": "Istanbul Ataturk Airport",
+    "date": "2024-02-08",
+    "departureTime": "08:00",
+    "arrivalTime": "09:30",
+    "duration": "1h 30m",
+    "price": 299.99,
+    "airline": "Türk Hava Yolları",
+    "from": "ADB",
+    "to": "IST"
+  },
+  {
+    "id": 2,
+    "departure": "Izmir Adnan Menderes Airport",
+    "destination": "Istanbul Ataturk Airport",
+    "date": "2024-02-08",
+    "departureTime": "09:00",
+    "arrivalTime": "10:30",
+    "duration": "1h 30m",
+    "price": 399.99,
+    "airline": "Türk Hava Yolları",
+    "from": "ADB",
+    "to": "IST"
+  },
+  {
+    "id": 3,
+    "departure": "Izmir Adnan Menderes Airport",
+    "destination": "Istanbul Ataturk Airport",
+    "date": "2024-02-08",
+    "departureTime": "12:00",
+    "arrivalTime": "13:30",
+    "duration": "2h 0m",
+    "price": 299.99,
+    "airline": "Türk Hava Yolları",
+    "from": "ADB",
+    "to": "IST"
+  },
+  {
+    "id": 4,
+    "departure": "Istanbul Ataturk Airport",
+    "destination": "Izmir Adnan Menderes Airport",
+    "date": "2024-02-09",
+    "departureTime": "12:00",
+    "arrivalTime": "13:30",
+    "duration": "2h 0m",
+    "price": 299.99,
+    "airline": "Türk Hava Yolları",
+    "from": "IST",
+    "to": "ADB"
+  },
+  {
+    "id": 5,
+    "departure": "Istanbul Ataturk Airport",
+    "destination": "Izmir Adnan Menderes Airport",
+    "date": "2024-02-09",
+    "departureTime": "11:00",
+    "arrivalTime": "13:30",
+    "duration": "2h 0m",
+    "price": 299.99,
+    "airline": "Türk Hava Yolları",
+    "from": "IST",
+    "to": "ADB"
+  }]
