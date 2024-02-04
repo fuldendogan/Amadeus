@@ -63,6 +63,7 @@ const App = () => {
         arrivalTime: string,
         duration: string,
         price: number,
+        currency: string,
         airline: string,
         from: string,
         to: string,
@@ -160,7 +161,7 @@ const App = () => {
                     {searchPerformed && flights.length > 0 && (
                         <>
                             <div style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center'}}>
-                                <h2>Gidiş:</h2>
+                                <h2 className="px-5 pt-4">Gidiş:</h2>
                                 {flights.length > 1 && <SortOptions data={flights} setData={setDepartureFlights}/>}
                             </div>
                             <FlightSearchResults
@@ -173,7 +174,7 @@ const App = () => {
                     {searchPerformed && isRoundTrip && returnFlights.length > 0 && (
                         <>
                             <div style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center'}}>
-                                <h2>Dönüş:</h2>
+                                <h2 className="px-5 pt-4">Dönüş:</h2>
                                 {returnFlights.length > 1 &&
                                     <SortOptions data={returnFlights} setData={setReturnFlights}/>}
                             </div>
