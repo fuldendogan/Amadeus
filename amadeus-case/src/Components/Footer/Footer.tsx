@@ -5,7 +5,7 @@ import './Footer.css';
 
 const Footer = () => {
     return (
-        <footer className="bg-dark text-white mt-5">
+        <footer className="bg-dark text-white">
             <div className="bg-secondary quick-links-section py-3">
                 <div className="container">
                     <div className="row">
@@ -48,9 +48,9 @@ const Footer = () => {
                     <div className="col-md-3">
                         <h5>İletişim</h5>
                         <ul className="list-unstyled">
-                            <li>Adres: Şehir, Ülke</li>
-                            <li>Email: info@ornek.com</li>
-                            <li>Telefon: (123) 456-7890</li>
+                            <li>Adres: Izmir, Turkiye</li>
+                            <li>Email: fulden.dogan@gmail.com</li>
+                            <li>Telefon: </li>
                         </ul>
                     </div>
                     <div className="col-md-3">

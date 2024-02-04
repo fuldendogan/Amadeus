@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from 'react';
+import './SearchBar.css';
 
 
 
@@ -71,23 +72,28 @@ const SearchBar = ({
     return (
         <div className="search-bar">
             <div className="trip-type">
-                <label htmlFor="round-trip">Gidiş-Dönüş</label>
                 <input
                     type="radio"
                     id="round-trip"
                     name="trip-type"
                     checked={isRoundTrip}
                     onChange={() => setIsRoundTrip(true)}
+                    style={{marginRight: '6px'}}
                 />
+                <label style={{marginRight: '10px'}}
+                       htmlFor="round-trip">Gidiş-Dönüş</label>
 
-                <label htmlFor="one-way">Tek Yön</label>
                 <input
                     type="radio"
                     id="one-way"
                     name="trip-type"
                     checked={!isRoundTrip}
                     onChange={() => setIsRoundTrip(false)}
+                    style={{marginRight: '6px'}}
+
                 />
+                <label htmlFor="one-way">Tek Yön</label>
+
             </div>
             <form style={{gridTemplateColumns: gridTemplateColumns}}>
                 <div className="input-group from">
@@ -95,7 +101,7 @@ const SearchBar = ({
                     <input autoComplete="off" type="text" value={fromInputValue} onChange={handleFromInputChange}
                            id="from" name="from" placeholder="Kalkış Yeri"/>
                     {fromSuggestions.length > 0 && (
-                        <ul className="suggestions-container">
+                        <ul className="suggestions-container mt-4">
                             {fromSuggestions.map((suggestion, index) => (
                                 <li key={index} onClick={() => {
                                     setFromInputValue(suggestion.name);
@@ -113,7 +119,7 @@ const SearchBar = ({
                     <input autoComplete="off" type="text" value={toInputValue} onChange={handleToInputChange} id="to"
                            name="to" placeholder="Varış Yeri"/>
                     {toSuggestions.length > 0 && (
-                        <ul className="suggestions-container">
+                        <ul className="suggestions-container mt-4">
                             {toSuggestions.map((suggestion, index) => (
                                 <li key={index} onClick={() => {
                                     setToInputValue(suggestion.name);

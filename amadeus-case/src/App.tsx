@@ -100,18 +100,17 @@ const App = () => {
 
         try {
             const departureResponse = await fetch(`/api/flights?date=${departureDate}&from=${fromCode}&to=${toCode}`);
-            if (!departureResponse.ok) throw new Error('Bu tarihlerde gidiş uçuşu bulunamadı.');
+            if (!departureResponse.ok) throw new Error('Uygun uçuş bulunamadı. 8 Şubat ve 13 Şubat tarihleri arasında Izmir Adnan Menderes Airport (ADB) - Istanbul Ataturk Airport (IST) arası uçuş bulunmaktadır.');
             const departureFlights = await departureResponse.json();
             setDepartureFlights(departureFlights);
 
             if (isRoundTrip) {
                 const returnResponse = await fetch(`/api/flights?date=${returnDate}&from=${toCode}&to=${fromCode}`);
-                if (!returnResponse.ok) throw new Error('Bu tarihlerde dönüş uçuşu bulunamadı.');
+                if (!returnResponse.ok) throw new Error('Uygun uçuş bulunamadı. 8 Şubat ve 13 Şubat tarihleri arasında Izmir Adnan Menderes Airport - Istanbul Ataturk Airport arası uçuş bulunmaktadır.');
                 const returnFlightsData = await returnResponse.json();
                 setReturnFlights(returnFlightsData);
             } else setReturnFlights([]);
 
-            // TODO"
 
             setSearchPerformed(true);
             setErrorMessage('');
@@ -148,8 +147,8 @@ const App = () => {
 
     return (
         <div>
-            <NavBar/>
-            <SearchBar {...searchBarProps} />
+            <NavBar/><div className="search">
+            <SearchBar {...searchBarProps} /></div>
             {loading ? (
                 <div className="loader-container">
                     <div className="loader"></div>
@@ -160,8 +159,8 @@ const App = () => {
                 <>
                     {searchPerformed && flights.length > 0 && (
                         <>
-                            <div style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center'}}>
-                                <h2 className="px-5 pt-4">Gidiş:</h2>
+                            <div className="mt-4" style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center'}}>
+                                <h2 className="title-margins mb-5">Gidiş:</h2>
                                 {flights.length > 1 && <SortOptions data={flights} setData={setDepartureFlights}/>}
                             </div>
                             <FlightSearchResults
@@ -173,8 +172,8 @@ const App = () => {
                         </>)}
                     {searchPerformed && isRoundTrip && returnFlights.length > 0 && (
                         <>
-                            <div style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center'}}>
-                                <h2 className="px-5 pt-4">Dönüş:</h2>
+                            <div className="mt-4" style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center'}}>
+                                <h2 className="title-margins mb-5">Dönüş:</h2><br/><br/>
                                 {returnFlights.length > 1 &&
                                     <SortOptions data={returnFlights} setData={setReturnFlights}/>}
                             </div>

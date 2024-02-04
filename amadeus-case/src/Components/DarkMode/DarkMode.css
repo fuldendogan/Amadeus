@@ -120,3 +120,13 @@ body[data-theme="dark"] .suggestions-container {
     width: 24px;
     height: 24px;
 }
+
+
+body[data-theme="dark"] .error-message {
+    color: mintcream;
+    background: rgb(128, 128, 128);
+    font-size: 14px;
+    margin: 50px 120px 0;
+    font-size: larger;
+
+}

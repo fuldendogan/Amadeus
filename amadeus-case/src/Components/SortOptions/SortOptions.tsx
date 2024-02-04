@@ -50,7 +50,7 @@ const SortOptions = ({data, setData}) => {
     };
 
     return (
-        <div ref={sortRef} className="sort-container mx-5 mt-4">
+        <div ref={sortRef} className="sort-container">
             <button onClick={() => setShowOptions(prev => !prev)} className="sort-button">
                 Sırala ▼
             </button>

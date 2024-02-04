@@ -23,17 +23,15 @@ body {
     background-color: #f0f0f0;
     padding: 20px;
     border-radius: 5px;
-    margin-left: 20px;
-    margin-right: 20px;
 }
 
 .flight-results-container {
     background-color: #f0f0f0;
     padding: 20px;
     border-radius: 5px;
-    margin-left: 20px;
-    margin-right: 20px;
-    width: 90%;
+    margin-left: 120px;
+    margin-right: 120px;
+    margin-top: -30px!important;
 }
 
 .search-bar form {
@@ -134,7 +132,7 @@ border: 1px solid #ccc;
 
 .select-flight {
     padding: 5px 15px;
-    background-color: #4CAF50; // Yeşil arka plan
+    background-color: #4CAF50;
 color: white;
     border: none;
     border-radius: 4px;
@@ -156,9 +154,8 @@ color: white;
     text-overflow: ellipsis;
 }
 
-/* Özelleştirilmiş sütunlar */
 .flight-card > .departure-time {
-    grid-column: span 1; /* Kalkış ve varış saati */
+    grid-column: span 1;
 }
 
 .flight-card > .duration {
@@ -211,3 +208,36 @@ body.dark {
     color: white;
 }
 
+.title-margins {
+margin-left: 120px;
+}
+
+.error-message {
+    color: black;
+    background: rgb(240, 240, 240);
+    padding: 20px;
+    margin: 50px 120px 50px;
+    font-size: larger;
+}
+
+a.navbar-brand {
+    font-weight: 800;
+    font-feature-settings: inherit;
+    font-size: xx-large;
+    font-family: cursive;
+    color: currentcolor;
+}
+
+div#basic-navbar-nav {
+    margin-top: 10px;
+}
+
+.search{
+    background-image: url("https://cdn2.enuygun.com/media/lib/825x620/uploads/image/bozcaada-36345.webp");
+    padding-top: 50px;
+    padding-bottom: 50px;
+    background-repeat: no-repeat, repeat;
+    background-size: cover; /* Resize the background image to cover the entire container */
+
+
+}

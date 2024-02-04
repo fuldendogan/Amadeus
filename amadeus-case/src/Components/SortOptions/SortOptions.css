@@ -1,6 +1,8 @@
 .sort-container {
     position: relative;
     display: inline-block;
+    margin-right: 120px;
+    margin-bottom: 40px;
 }
 
 .sort-button {
