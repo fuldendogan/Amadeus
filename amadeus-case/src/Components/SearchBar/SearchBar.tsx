@@ -153,7 +153,7 @@ const SearchBar = ({
                 <div className="button-search input-group">
                     <label htmlFor="departure-date" className=""></label>
                     <br></br>
-                    <button onClick={handleSearch} disabled={isSearchButtonDisabled()}>ARA</button>
+                    <button className="btn btn-secondary" onClick={handleSearch} disabled={isSearchButtonDisabled()}>ARA</button>
 
 
                 </div>

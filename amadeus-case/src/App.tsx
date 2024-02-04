@@ -3,8 +3,13 @@ import FlightSearchResults from "./Components/FlightSearchResults/FlightSearchRe
 import SearchBar from "./Components/SearchBar/SearchBar";
 import SortOptions from "./Components/SortOptions/SortOptions";
 import {createServer, Response} from "miragejs";
-import flightsData from './flightsData.json';
-import data from "./airportsData.json";
+import flightsData from './data/flightsData.json';
+import data from "./data/airportsData.json";
+// import NavBar from "./Components/NavBar/NavBar";
+import 'bootstrap/dist/css/bootstrap.min.css';
+import NavBar from "./Components/NavBar/NavBar";
+import PurchaseButton from "./Components/PurchaseButton/PurchaseButton";
+import Footer from "./Components/Footer/Footer";
 
 
 createServer({
@@ -40,7 +45,7 @@ const App = () => {
     const [isRoundTrip, setIsRoundTrip] = useState(true);
     const [departureDate, setDepartureDate] = useState('');
     const [returnDate, setReturnDate] = useState('');
-    const [flights, setFlights] = useState([]);
+    const [flights, setDepartureFlights] = useState([]);
     const [returnFlights, setReturnFlights] = useState([]);
     const [loading, setLoading] = useState(false);
     const [searchPerformed, setSearchPerformed] = useState(false);
@@ -75,38 +80,6 @@ const App = () => {
     }, []);
 
 
-    // const handleSearch = async () => {
-    //     event?.preventDefault();
-    //     setLoading(true);
-    //
-    //     setSelectedDepartureFlight(null);
-    //     setSelectedReturnFlight(null);
-    //
-    //     const filteredDepartureFlights = flightData.filter(flight => {
-    //         return flight.departure.toLowerCase().includes(fromInputValue.toLowerCase()) &&
-    //             flight.destination.toLowerCase().includes(toInputValue.toLowerCase()) &&
-    //             flight.date === departureDate;
-    //     });
-    //
-    //     let filteredReturnFlights = [];
-    //     if (isRoundTrip) {
-    //         filteredReturnFlights = flightData.filter(flight => {
-    //             return flight.departure.toLowerCase().includes(toInputValue.toLowerCase()) &&
-    //                 flight.destination.toLowerCase().includes(fromInputValue.toLowerCase()) &&
-    //                 flight.date === returnDate;
-    //         });
-    //     }
-    //
-    //     setFlights(filteredDepartureFlights);
-    //     setReturnFlights(filteredReturnFlights);
-    //
-    //     setLoading(false);
-    //     setSearchPerformed(true);
-    //     console.log(filteredDepartureFlights)
-    //     console.log(filteredReturnFlights)
-    // };
-
-
     const getAirportCode = (name) => {
         const airport = data.find(airport => airport.name === name);
         return airport ? airport.code : null;
@@ -115,9 +88,12 @@ const App = () => {
         event?.preventDefault();
         setLoading(true);
 
-
         const fromCode = getAirportCode(fromInputValue);
         const toCode = getAirportCode(toInputValue);
+
+        if (!isRoundTrip) {
+            setSelectedReturnFlight(null); // Tek yönlü aramada dönüş uçuşunu sıfırla
+        }
 
         if (!fromCode || !toCode) {
             console.error("Havaalanı kodları bulunamadı.");
@@ -129,20 +105,23 @@ const App = () => {
             const departureResponse = await fetch(`/api/flights?date=${departureDate}&from=${fromCode}&to=${toCode}`);
             if (!departureResponse.ok) throw new Error('Bu tarihlerde gidiş uçuşu bulunamadı.');
             const departureFlights = await departureResponse.json();
-            setFlights(departureFlights);
+            setDepartureFlights(departureFlights);
 
             if (isRoundTrip) {
                 const returnResponse = await fetch(`/api/flights?date=${returnDate}&from=${toCode}&to=${fromCode}`);
                 if (!returnResponse.ok) throw new Error('Bu tarihlerde dönüş uçuşu bulunamadı.');
                 const returnFlightsData = await returnResponse.json();
                 setReturnFlights(returnFlightsData);
-            }
+            } else setReturnFlights([]);
+
+            // TODO"
 
             setSearchPerformed(true);
+            setErrorMessage('');
         } catch (error) {
             setErrorMessage(error.message);
             console.error("Hata:", error.message);
-            setFlights([]);
+            setDepartureFlights([]);
             setReturnFlights([]);
         } finally {
             setLoading(false);
@@ -172,6 +151,7 @@ const App = () => {
 
     return (
         <div>
+            <NavBar/>
             <SearchBar {...searchBarProps} />
             {loading ? (
                 <div className="loader-container">
@@ -185,7 +165,7 @@ const App = () => {
                         <>
                             <div style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center'}}>
                                 <h2>Gidiş:</h2>
-                                {flights.length > 1 && <SortOptions data={flights} setData={setFlights}/>}
+                                {flights.length > 1 && <SortOptions data={flights} setData={setDepartureFlights}/>}
                             </div>
                             <FlightSearchResults
                                 flights={selectedDepartureFlight ? [selectedDepartureFlight] : flights}
@@ -193,12 +173,13 @@ const App = () => {
                                 loading={loading}
                                 selectedFlight={selectedDepartureFlight}
                             />
-                        </>                    )}
+                        </>)}
                     {searchPerformed && isRoundTrip && returnFlights.length > 0 && (
                         <>
                             <div style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center'}}>
                                 <h2>Dönüş:</h2>
-                                {returnFlights.length > 1 && <SortOptions data={returnFlights} setData={setReturnFlights}/>}
+                                {returnFlights.length > 1 &&
+                                    <SortOptions data={returnFlights} setData={setReturnFlights}/>}
                             </div>
                             <FlightSearchResults
                                 flights={selectedReturnFlight ? [selectedReturnFlight] : returnFlights}
@@ -207,9 +188,21 @@ const App = () => {
                                 selectedFlight={selectedReturnFlight}
                                 isSelectDisabled={!selectedDepartureFlight}
                             />
-                        </>                    )}
+
+
+                        </>)}
+                    {((!isRoundTrip && selectedDepartureFlight) ||
+                        (isRoundTrip && selectedDepartureFlight && selectedReturnFlight)) && (
+                        <PurchaseButton
+                            selectedDepartureFlight={selectedDepartureFlight}
+                            selectedReturnFlight={selectedReturnFlight}
+                        />
+                    )}
+
+
                 </>
             )}
+            <Footer/>
         </div>
     );
 

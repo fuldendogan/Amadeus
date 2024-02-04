@@ -3,7 +3,6 @@ body {
     margin: 0;
     box-sizing: border-box;
     font-family: Lato, sans-serif;
-    /*background: black;*/
 }
 
 .flex {
@@ -26,7 +25,6 @@ body {
     border-radius: 5px;
     margin-left: 20px;
     margin-right: 20px;
-    width: 90%;
 }
 
 .flight-results-container {
@@ -63,7 +61,6 @@ body {
 
 .search-bar button {
     padding: 10px 20px;
-    background-color: yellow;
     border: none;
     border-radius: 4px;
     cursor: pointer;
@@ -73,9 +70,8 @@ body {
 
 .input-group {
     display: flex;
-    flex-direction: column; /* Label ve inputları dikey olarak sıralar */
+    flex-direction: column;
 }
-/* Styling for radio buttons can be added as needed */
 
 .button-search{
     margin-bottom: 10px;
@@ -97,16 +93,16 @@ body {
 }
 
 .from{
-    position: relative; /* Öneri listesi bu grubun konumunu referans alacak */
+    position: relative;
 }
 
 .to{
-    position: relative; /* Öneri listesi bu grubun konumunu referans alacak */
+    position: relative;
 }
 
 .suggestions-container {
     position: absolute;
-    top: 60%; /* 'Nereden' input alanının altında başlar */
+    top: 60%;
     left: 0;
     right: 0;
     max-height: 300px;
@@ -119,7 +115,7 @@ body {
 .flight-results-container {
     display: flex;
     flex-direction: column;
-    margin-top: 20px; // Arama çubuğundan boşluk bırakın
+    margin-top: 20px;
 }
 
 .flight-card {
@@ -127,13 +123,13 @@ body {
     justify-content: space-between;
     align-items: center;
     padding: 10px;
-    margin-bottom: 10px; // Kartlar arası boşluk
+    margin-bottom: 10px;
 border: 1px solid #ccc;
-    border-radius: 4px; // Kenarları yuvarlak yap
+    border-radius: 4px;
 }
 
 .flight-time, .flight-airline, .flight-price {
-    margin-right: 10px; // İçerikler arası boşluk
+    margin-right: 10px;
 }
 
 .select-flight {
@@ -147,7 +143,7 @@ color: white;
 
 .flight-card {
     display: grid;
-    grid-template-columns: 2fr 2fr 3fr 2fr 2fr 2fr 1fr; /* 5 sütunu farklı oranlarda ayarlayın */
+    grid-template-columns: 2fr 2fr 3fr 2fr 2fr 2fr 1fr;
     gap: 10px;
     align-items: center;
     padding: 10px;
@@ -155,9 +151,9 @@ color: white;
 }
 
 .flight-detail {
-    white-space: nowrap; /* Metnin taşmamasını sağlayın */
-    overflow: hidden; /* Sınırların dışına çıkan içeriği gizleyin */
-    text-overflow: ellipsis; /* Taşan metin için üç nokta ekleyin */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 /* Özelleştirilmiş sütunlar */
@@ -192,4 +188,26 @@ color: white;
     100% { transform: rotate(360deg); }
 }
 
+.flight-results-container{
+    color: black!important;
+}
+
+.search-bar{
+    color: black!important;
+}
+
+
+body {
+    --color-background: #fafafa;
+    --color-foreground: #1f2023;
+}
+body.dark {
+    --color-background: #1f2023;
+    --color-foreground: #efefef;
+}
+
+.dark-mode {
+    background-color: #333;
+    color: white;
+}
 
