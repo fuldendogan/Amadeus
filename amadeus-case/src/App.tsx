@@ -11,7 +11,6 @@ import NavBar from "./Components/NavBar/NavBar";
 import PurchaseButton from "./Components/PurchaseButton/PurchaseButton";
 import Footer from "./Components/Footer/Footer";
 
-
 createServer({
     routes() {
         this.get('/api/airports', (schema, request) => {
@@ -55,8 +54,6 @@ const App = () => {
     const [selectedReturnFlight, setSelectedReturnFlight] = useState(null);
     const [errorMessage, setErrorMessage] = useState('');
 
-
-
     type Flight = {
         id: number,
         departure: string,
@@ -76,7 +73,6 @@ const App = () => {
             .then(response => response.json())
             .then(flightData => setFlightData(flightData as Flight[]))
             .catch(error => console.error("API'den veri çekilirken bir hata oluştu:", error));
-        ;
     }, []);
 
 
@@ -205,7 +201,6 @@ const App = () => {
             <Footer/>
         </div>
     );
-
 };
 
 export default App;
